@@ -1,7 +1,7 @@
 # fib-thread
 Different implementation of the Fibonacci algorithm using parallelism
 
-This is used to benchmark the quality of the parallelism tools:
+This is used to benchmark the quality of the parallelism tools in case of recursive parallelism algorithm:
 
 Result of the benchmarks:
 
