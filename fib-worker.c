@@ -27,6 +27,8 @@ cputime (void)
 
 /***************************************************************************/
 
+worker_t w_g;
+
 int fib(int n);
 
 struct fib2_s {
@@ -49,7 +51,7 @@ int fib(int n)
 
   worker_start(b);
   f.n = n - 2;
-  worker_spawn (b, subfunc_1, &f);
+  worker_spawn (w_g, b, subfunc_1, &f);
   int y = fib (n-1);
   worker_sync(b);
   return f.x + y;
@@ -57,7 +59,7 @@ int fib(int n)
 
 int main()
 {
-  worker_init(0, 0, NULL);
+  worker_init(w_g, 0, 0, NULL);
   int n = 39;
   int start = cputime();
   int result = fib(n);
@@ -66,7 +68,9 @@ int main()
   // Display our results
   double duration = (double)(end - start) / 1000;
   printf("Fibonacci number #%d is %d.\n", n, result);
-  printf("Calculated in %.3f seconds.\n", duration);
+  printf("Calculated in %.3f seconds with %lu workers.\n", duration,
+         worker_count(w_g) );
 
+  worker_clear(w_g);
   return 0;
 }
