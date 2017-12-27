@@ -47,7 +47,7 @@ int fib(int n)
     return n;
 
   struct fib2_s f;
-  worker_block_t b;
+  worker_sync_t b;
 
   worker_start(b);
   f.n = n - 2;
