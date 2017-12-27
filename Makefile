@@ -1,7 +1,7 @@
 BIN=fib-cilk
 CC=gcc -std=c99
 CFLAGS=-O2 -march=native -Wall
-WORKER_PATH_FLAGS=-I../mlib -I../m-worker ../m-worker/libmworker.a
+WORKER_PATH_FLAGS=-I../mlib
 
 all: run-cilk run-openmp run-naive run-worker
 
