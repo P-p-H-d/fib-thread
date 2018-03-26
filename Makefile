@@ -17,6 +17,9 @@ fib-naive: fib-naive.c
 fib-worker: fib-worker.c
 	$(CC) $(CFLAGS) fib-worker.c $(WORKER_PATH_FLAGS) -o fib-worker -lpthread
 
+fib-worker2: fib-worker2.c
+	$(CC) $(CFLAGS) fib-worker2.c $(WORKER_PATH_FLAGS) -o fib-worker2 -lpthread
+
 run-cilk: fib-cilk
 	@echo Fibonacci by cilk+
 	@perf stat ./fib-cilk
@@ -33,5 +36,9 @@ run-worker: fib-worker
 	@echo Fibonacci by m-worker implementation
 	@perf stat ./fib-worker
 
+run-worker2: fib-worker2
+	@echo Fibonacci by m-worker implementation
+	@perf stat ./fib-worker2
+
 clean:
-	rm -f fib-cilk fib-openmp fib-naive fib-worker *~
+	rm -f fib-cilk fib-openmp fib-naive fib-worker fib-worker2 *~
