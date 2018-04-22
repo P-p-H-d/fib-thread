@@ -53,7 +53,7 @@ int fib(int n)
   f.n = n - 2;
   worker_spawn (w_g, b, subfunc_1, &f);
   int y = fib (n-1);
-  worker_sync(b);
+  worker_sync(w_g, b);
   return f.x + y;
 }
 
