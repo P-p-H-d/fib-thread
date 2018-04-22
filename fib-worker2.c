@@ -40,7 +40,7 @@ int fib(int n)
   worker_start(b);
   WORKER_SPAWN(w_g, b, (n), { x = fib(n-2); } , (x));
   y = fib (n-1);
-  worker_sync(b);
+  worker_sync(w_g, b);
   return x + y;
 }
 
