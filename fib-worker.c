@@ -49,11 +49,11 @@ int fib(int n)
   struct fib2_s f;
   worker_sync_t b;
 
-  worker_start(b);
+  worker_start(b, w_g);
   f.n = n - 2;
-  worker_spawn (w_g, b, subfunc_1, &f);
+  worker_spawn (b, subfunc_1, &f);
   int y = fib (n-1);
-  worker_sync(w_g, b);
+  worker_sync(b);
   return f.x + y;
 }
 
